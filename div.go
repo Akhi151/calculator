@@ -1,66 +1,60 @@
 package main
 
 import (
+	"encoding/json"
 
-    "encoding/json"
+	"fmt"
 
-    "fmt"
-
-    "net/http"
-
+	"net/http"
 )
 
 type Numbers struct {
+	First int `json:"first"`
 
-    First  int `json:"first"`
-
-    Second int `json:"second"`
-
+	Second int `json:"second"`
 }
 
 type Response struct {
-
-    Result int `json:"divv"`
-
+	Result int `json:"divv"`
 }
 
 func main() {
 
-    fmt.Println("hhh")
+	fmt.Println("hhh")
 
-    http.HandleFunc("/div", division)
+	http.HandleFunc("/div", division)
 
-    http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8081", nil)
 
 }
 
 func division(w http.ResponseWriter, r *http.Request) {
 
-    var num Numbers
+	var num Numbers
 
-    err := json.NewDecoder(r.Body).Decode(&num)
+	err := json.NewDecoder(r.Body).Decode(&num)
 
-    if err != nil {
+	if err != nil {
 
-        fmt.Println("Error in Decoding")
+		fmt.Println("Error in Decoding")
 
-    }
+	}
 
-    divv := divide(num.First, num.Second)
+	divv := divide(num.First, num.Second)
 
-    res := Response{Result: divv}
+	res := Response{Result: divv}
 
-    res1, _ := json.Marshal(res)
+	res1, _ := json.Marshal(res)
 
-    w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 
-    w.Write(res1)
+	w.Write(res1)
 }
 
 func divide(a, b int) int {
 
-    div := a / b
+	div := a / b
 
-    return div
+	return div
 
 }
