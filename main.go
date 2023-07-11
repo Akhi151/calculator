@@ -18,4 +18,5 @@ func handleRequests() {
 func main() {
 	fmt.Println("hhhh")
 	handleRequests()
+	Calculatediv()
 }
