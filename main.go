@@ -1,10 +1,12 @@
 package main
 
 import (
+	"calculator/controller"
 	"fmt"
 	"log"
 	"net/http"
-	"encoding/json"
+
+	"github.com/julienschmidt/httprouter"
 )
 type Numbers struct{
 	First int `json:"First"`
@@ -14,36 +16,19 @@ type Response struct{
 	Result int `json:"res"`
 }
 
-func homepage(w http.ResponseWriter, r *http.Request)  {
-	fmt.Fprintf(w,  "homepage")
-}
-
-func handleRequests() {
-	http.HandleFunc("/",homepage)
-	http.HandleFunc("/sub",sub)
-	log.Fatal(http.ListenAndServe(":8081",nil))
-}
-
-func sub(w http.ResponseWriter, r *http.Request){
-	
-	var num Numbers
-	err:=json.NewDecoder(r.Body).Decode(&num)
-	if err!=nil{
-		fmt.Println("Error in decoding JSON")
-	}
-	res:=subtraction(num.First,num.Second)
-	response:=Response{Result:res}
-	user,_:=json.Marshal(response)
-	w.Write(user)
-	
-}
-func subtraction(a,b int) int{
-	sub:=a-b
-	return sub
-}
-
 func main() {
-	fmt.Println("hhhh")
-	handleRequests()
+
+	fmt.Println("Server is started...")
+	router := httprouter.New()
+
+	// Subtraction route
+	router.GET("/sub", controller.Sub)
+	router.GET("/mulN", controller.Multiple)
+
+	// Start HTTP Listener
+	err := http.ListenAndServe(":8080", router)
+	if err != nil {
+		log.Printf("HTTP Server stopped - %s", err)
+	}
 }
 
