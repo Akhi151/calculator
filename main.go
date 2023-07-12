@@ -17,6 +17,7 @@ func main() {
 	// Subtraction route
 	router.GET("/sub", controller.Sub)
 	router.GET("/add", controller.Add)
+	router.GET("/addn", controller.Addn)
 
 	// Start HTTP Listener
 	err := http.ListenAndServe(":8080", router)
