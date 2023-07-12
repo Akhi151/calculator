@@ -18,9 +18,10 @@ func main() {
 	router.GET("/sub", controller.Sub)
 	router.GET("/add", controller.Add)
 	router.GET("/addn", controller.Addn)
+	router.GET("/multiply", controller.Multiply)
 
 	// Start HTTP Listener
-	err := http.ListenAndServe(":8080", router)
+	err := http.ListenAndServe(":8000", router)
 	if err != nil {
 		log.Printf("HTTP Server stopped - %s", err)
 	}
