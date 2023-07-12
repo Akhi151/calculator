@@ -23,13 +23,13 @@ func Sub(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	if err != nil {
 		fmt.Println("Error in decoding JSON")
 	}
-	res := subtraction(num.First, num.Second)
+	res := Subtraction(num.First, num.Second)
 	response := Response{Result: res}
 	user, _ := json.Marshal(response)
 	w.Write(user)
 }
 
-func subtraction(a, b int) int {
+func Subtraction(a, b int) int {
 	sub := a - b
 	return sub
 }
