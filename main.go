@@ -16,10 +16,15 @@ func main() {
 
 	// Subtraction route
 	router.GET("/sub", controller.Sub)
+	// Add route
 	router.GET("/add", controller.Add)
+	// Adding 'n' number route
 	router.GET("/addn", controller.Addn)
+	// multipy route
 	router.GET("/multiply", controller.Multiply)
+	// multiply 'n'  route
 	router.GET("/multiple", controller.Multiple)
+	// div route
 	router.GET("/div", controller.Div)
 
 	// Start HTTP Listener
