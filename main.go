@@ -17,12 +17,21 @@ func main() {
 	// Subtraction route
 	router.GET("/sub", controller.Sub)
 	//Addition route
+	// Add route
 	router.GET("/add", controller.Add)
+	// Adding 'n' number route
+	router.GET("/addn", controller.Addn)
+	// multipy route
+	router.GET("/multiply", controller.Multiply)
+	// multiply 'n'  route
+	router.GET("/multiple", controller.Multiple)
+	// div route
+	router.GET("/div", controller.Div)
 
 	router.GET("/", welcome)
 
 	// Start HTTP Listener
-	err := http.ListenAndServe(":8080", router)
+	err := http.ListenAndServe(":8000", router)
 	if err != nil {
 		log.Printf("HTTP Server stopped - %s", err)
 	}
