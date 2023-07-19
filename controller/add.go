@@ -27,6 +27,7 @@ func Add(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	response := Responses{Results: res}
 	user, _ := json.Marshal(response)
 	w.Write(user)
+
 }
 
 func addition(a, b int) int {

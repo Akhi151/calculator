@@ -11,6 +11,9 @@ import (
 
 func main() {
 
+	controller.DbConnect()
+	//fmt.Println("Success code is:", res)
+
 	fmt.Println("Server is started...")
 	router := httprouter.New()
 
@@ -35,6 +38,7 @@ func main() {
 	if err != nil {
 		log.Printf("HTTP Server stopped - %s", err)
 	}
+
 }
 
 func welcome(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
