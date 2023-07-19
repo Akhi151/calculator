@@ -11,6 +11,7 @@ import (
 
 func main() {
 
+	controller.DbConnect()
 	fmt.Println("Server is started...")
 	router := httprouter.New()
 
