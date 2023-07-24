@@ -20,6 +20,7 @@ func main() {
 	router.GET("/addn", controller.Addn)
 	router.GET("/multiply", controller.Multiply)
 	router.GET("/div", controller.Div)
+	controller.Db()
 
 	// Start HTTP Listener
 	err := http.ListenAndServe(":8000", router)
